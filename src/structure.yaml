@@ -1,0 +1,24 @@
+This is the structure of my ML project:
+
+customer-churn-case-study
+  - data
+    - processed (Contains more refined version)
+      - cleaned_customer_churn.csv
+      - engineered_customer_churn.csv
+      - predicted_customer_churn.csv
+      - metrics.json
+    - raw (Contains the original dataset)
+      - customer_churn.csv
+  - src
+    - 01_eda.ipynb
+    - 02_model_prototype.ipynb
+    - 03_model_evaluation.ipynb
+    - custom_metrics.py
+    - data_cleaning.py
+    - feature_engineering.py
+    - model_builder.py
+    - tuner.py
+    - visual_eval.py
+     
+So in the src file all my code snippets reside. I'll give you all the code snippets one by one ok?
+Starting with data_cleaning.py and  feature_engineering.py?
