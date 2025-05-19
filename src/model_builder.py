@@ -18,38 +18,18 @@ except ImportError:
 def build_and_tune_model(model_name, X_train, y_train):
     if model_name == "logreg":
         model = LogisticRegression(solver='liblinear', random_state=42)
-        param_grid = {
-            'C': [0.01, 0.1, 1, 10],
-            'penalty': ['l1', 'l2']
-        }
+        param_grid = {'C': [0.01, 0.1, 1, 10],'penalty': ['l1', 'l2']}
     elif model_name == "random_forest":
         model = RandomForestClassifier(random_state=42)
-        param_grid = {
-            'n_estimators': [100, 200],
-            'max_depth': [5, 10, None],
-            'min_samples_split': [2, 5]
-        }
+        param_grid = {'n_estimators': [100, 200],'max_depth': [5, 10, None],'min_samples_split': [2, 5]}
     elif model_name == "xgboost":
         model = XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
-        param_grid = {
-            'n_estimators': [100, 200],
-            'max_depth': [3, 6],
-            'learning_rate': [0.01, 0.1]
-        }
+        param_grid = {'n_estimators': [100, 200],'max_depth': [3, 6],'learning_rate': [0.01, 0.1]}
     else:
         raise ValueError(f"Unsupported model_name: {model_name}")
 
     # Use tuner.py to find best params and return best model
-    best_model, cv_results = tune_model(
-        model,
-        param_grid,
-        X_train,
-        y_train,
-        search_type="grid",   # or "random" if preferred
-        cv=5,
-        scoring='roc_auc'
-    )
-
+    best_model, cv_results = tune_model(model,param_grid,X_train,y_train,search_type="grid",cv=5,scoring='roc_auc')
     return best_model
 
 # -------- Model selector --------

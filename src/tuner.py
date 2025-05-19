@@ -4,8 +4,7 @@ from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 
 logging.basicConfig(level=logging.INFO, format='[%(levelname)s] %(message)s')
 
-def tune_model(model, param_grid, X_train, y_train, 
-               search_type="grid", cv=5, n_iter=10, scoring="roc_auc", verbose=1, random_state=42):
+def tune_model(model, param_grid, X_train, y_train, search_type="grid", cv=5, n_iter=10, scoring="roc_auc", verbose=1, random_state=42):
     """
     Hyperparameter tuning wrapper.
 
@@ -31,8 +30,7 @@ def tune_model(model, param_grid, X_train, y_train,
     if search_type == "grid":
         searcher = GridSearchCV(model, param_grid, cv=cv, scoring=scoring, verbose=verbose, n_jobs=-1)
     elif search_type == "random":
-        searcher = RandomizedSearchCV(model, param_distributions=param_grid, n_iter=n_iter, 
-                                      cv=cv, scoring=scoring, verbose=verbose, random_state=random_state, n_jobs=-1)
+        searcher = RandomizedSearchCV(model, param_distributions=param_grid, n_iter=n_iter,cv=cv, scoring=scoring, verbose=verbose, random_state=random_state, n_jobs=-1)
     else:
         raise ValueError("search_type must be 'grid' or 'random'")
 

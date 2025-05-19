@@ -21,9 +21,7 @@ def engineer_features(df):
 
 
     # Binning tenure
-    df['tenure_group'] = pd.cut(df['tenure'], 
-                                bins=[0, 12, 24, 48, 60, df['tenure'].max()],
-                                labels=['0-12m', '12-24m', '24-48m', '48-60m', '60m+'])
+    df['tenure_group'] = pd.cut(df['tenure'], bins=[0, 12, 24, 48, 60, df['tenure'].max()],labels=['0-12m', '12-24m', '24-48m', '48-60m', '60m+'])
 
     # Encode tenure_group
     df = pd.get_dummies(df, columns=['tenure_group'])
